@@ -7,10 +7,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestCase {
     WebDriver driver;
+    Eyes eyes;
 
     @BeforeEach
-    public void beforeEach() {
+    public void beforeEach(TestInfo testInfo) {
+        eye = new Eyes();
+        eyes.setApiKey(System.getenv(name: "APPLITOOLS_API_KEY"));
         driver = WebDriverManager.chromedriver().create();
+        eyes.open(driver, appName "My First Tests",
+        testInfo.getTestMethod()).get().getName, 
+        new RectangleSize(width: 1000, height 600))
     }
     @Test
     public void myTestCase() {
@@ -35,6 +41,7 @@ public class TestCase {
         Assertions.assertEquals(titleD.isDisplayed(), true);
         Assertions.assertEquals(titleD.getText(), "D");
         Assertions.assertEquals(titleD.getCssValue("color"), "rgba(70, 0, 255, 1)");`
+        eyes,check(Target.window());
     }
 
     @AfterEach
